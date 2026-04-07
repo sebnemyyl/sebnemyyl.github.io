@@ -9,16 +9,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d0d;
-      --surface: #161616;
-      --card: #1e1e1e;
-      --border: rgba(255,255,255,0.08);
-      --text: #f0ece4;
-      --muted: #888;
+      --bg: #ffffff;
+      --surface: #f9fafb;
+      --card: #ffffff;
+      --border: rgba(0,0,0,0.08);
+
+      --text: #1a1a1a;
+      --muted: #6b7280;
+
       --accent1: #e8c547; /* golden yellow */
       --accent2: #e05c5c; /* coral red */
       --accent3: #5cb8e0; /* sky blue */
       --accent4: #7ce08a; /* mint green */
+
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body: 'DM Sans', sans-serif;
       --font-mono: 'DM Mono', monospace;
@@ -40,7 +43,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 1.2rem 3rem;
-      background: rgba(13,13,13,0.85);
+      background: rgba(255,255,255,0.8);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }

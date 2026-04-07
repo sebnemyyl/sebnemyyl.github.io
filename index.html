@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Şebnem Sara Yayla — Data Scientist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --card: #1e1e1e;
+      --border: rgba(255,255,255,0.08);
+      --text: #f0ece4;
+      --muted: #888;
+      --accent1: #e8c547; /* golden yellow */
+      --accent2: #e05c5c; /* coral red */
+      --accent3: #5cb8e0; /* sky blue */
+      --accent4: #7ce08a; /* mint green */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--accent1);
+      letter-spacing: 0.08em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent1); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 80% 50%, rgba(232,197,71,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(92,184,224,0.06) 0%, transparent 70%);
+    }
+    .hero-grid-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent1);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(232,197,71,0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.3rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-name span { color: var(--accent1); }
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-bio {
+      max-width: 520px;
+      font-size: 1rem;
+      color: rgba(240,236,228,0.75);
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--accent1);
+      color: #0d0d0d;
+    }
+    .btn-primary:hover { background: #f0d055; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent1); color: var(--accent1); transform: translateY(-2px); }
+
+    /* hero right: decorative data viz */
+    .hero-visual {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-orb {
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 1px solid rgba(232,197,71,0.15);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: spin 30s linear infinite;
+    }
+    .hero-orb::before {
+      content: '';
+      position: absolute; inset: 20px;
+      border-radius: 50%;
+      border: 1px dashed rgba(92,184,224,0.2);
+      animation: spin 20s linear infinite reverse;
+    }
+    .hero-orb-inner {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,197,71,0.15), rgba(13,13,13,0.6));
+      border: 1px solid rgba(232,197,71,0.3);
+      display: flex; align-items: center; justify-content: center;
+      animation: spin 30s linear infinite reverse;
+    }
+    .hero-orb-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--accent1);
+      text-align: center;
+      animation: spin 30s linear infinite;
+    }
+    .orb-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent1);
+    }
+    .orb-dot:nth-child(1) { top: -4px; left: 50%; }
+    .orb-dot:nth-child(2) { bottom: -4px; left: 50%; background: var(--accent3); }
+    .orb-dot:nth-child(3) { left: -4px; top: 50%; background: var(--accent2); }
+    .orb-dot:nth-child(4) { right: -4px; top: 50%; background: var(--accent4); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0 3rem;
+      max-width: calc(1100px - 6rem);
+    }
+
+    /* ── SKILLS ── */
+    #skills { max-width: 1100px; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-group:hover { border-color: var(--accent1); transform: translateY(-3px); }
+    .skill-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .skill-group:nth-child(1) .skill-group-title { color: var(--accent1); }
+    .skill-group:nth-child(2) .skill-group-title { color: var(--accent3); }
+    .skill-group:nth-child(3) .skill-group-title { color: var(--accent2); }
+    .skill-group:nth-child(4) .skill-group-title { color: var(--accent4); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: rgba(240,236,228,0.8);
+      font-family: var(--font-mono);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { max-width: 1100px; }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent1), var(--accent3));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .project-card:hover { border-color: rgba(232,197,71,0.3); transform: translateY(-4px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-number {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: rgba(240,236,228,0.65);
+      flex: 1;
+    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-tech span {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 0.2rem 0.5rem;
+      background: rgba(232,197,71,0.08);
+      border: 1px solid rgba(232,197,71,0.2);
+      color: var(--accent1);
+      border-radius: 2px;
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--accent3);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent1); }
+    .project-link svg { width: 14px; height: 14px; }
+
+    /* ── EXPERIENCE ── */
+    #experience { max-width: 1100px; }
+    .exp-placeholder {
+      background: var(--card);
+      border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: 4px;
+      padding: 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .exp-placeholder strong { color: var(--accent1); font-weight: 500; }
+
+    /* ── CONTACT ── */
+    #contact { max-width: 1100px; }
+    .contact-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+    .contact-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .contact-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 400px;
+    }
+    .contact-links {
+      display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent1); color: var(--accent1); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
+      .hero-visual { display: none; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">SSY</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="about" style="max-width:100%; padding:0;">
+    <div id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-tag">Analytics Professional</div>
+        <h1 class="hero-name">Şebnem Sara<br/><span>Yayla</span></h1>
+        <p class="hero-subtitle">Data Scientist · MSc University of Vienna</p>
+        <p class="hero-bio">
+          Combining strong expertise in machine learning, statistical modeling, and business intelligence. 
+          With experience across academia and industry, I build end-to-end data pipelines, develop predictive models, 
+          and transform complex datasets into actionable insights. 
+          A multidisciplinary perspective on solving data-driven problems.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-orb">
+          <div class="orb-dot"></div>
+          <div class="orb-dot"></div>
+          <div class="orb-dot"></div>
+          <div class="orb-dot"></div>
+          <div class="hero-orb-inner">
+            <div class="hero-orb-text">Data<br/>Science</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Skills & Tech Stack</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">R</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ML / AI Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">scikit-learn</span>
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">PyTorch</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">BI & Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Tableau Desktop</span>
+          <span class="skill-tag">Tableau Prep</span>
+          <span class="skill-tag">KNIME</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">dbt</span>
+          <span class="skill-tag">Fivetran</span>
+          <span class="skill-tag">Apache Airflow</span>
+          <span class="skill-tag">AWS S3</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">MSSQL</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-number">01 / Research</div>
+        <div class="project-title">Characterization of Cotton-Polyester Textiles via IR Spectroscopy</div>
+        <p class="project-desc">
+          Applied infrared spectroscopy techniques to identify and characterize the composition of cotton-polyester textile blends, combining spectral analysis with data-driven methods to extract meaningful material insights.
+        </p>
+        <div class="project-tech">
+          <span>Python</span>
+          <span>Spectroscopy</span>
+          <span>Data Analysis</span>
+        </div>
+        <a class="project-link" href="https://github.com/sebnemyyl/Characterization-of-cotton-polyester-textiles-using-IR-spectroscopy" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          View on GitHub
+        </a>
+      </div>
+      <!-- Placeholder cards for future projects -->
+      <div class="project-card" style="border-style: dashed; opacity: 0.45;">
+        <div class="project-number">02 / Coming Soon</div>
+        <div class="project-title">Next Project</div>
+        <p class="project-desc">More projects will appear here. Add them to your GitHub and update this page!</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Work Experience</h2>
+    <div class="exp-placeholder">
+      <p>
+        Add your work experience here!<br/>
+        <strong>Open index.html</strong> and replace this section with your roles, companies, and dates.
+      </p>
+      <br/>
+      <p style="font-size:0.8rem; font-family: var(--font-mono);">
+        Example: Data Scientist · Acme Corp · 2022–present
+      </p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-inner">
+      <p class="contact-sub">
+        Open to data science roles, research collaborations, and consulting opportunities.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://github.com/sebnemyyl" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="contact-link" href="https://linkedin.com" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="mailto:your@email.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Şebnem Sara Yayla &nbsp;·&nbsp; Built with GitHub Pages
+  </footer>
+
+</body>
+</html>

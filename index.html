@@ -9,7 +9,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f0e6ff;
+      --bg: #ffffff;
       --surface: #f9fafb;
       --card: #ffffff;
       --border: rgba(0,0,0,0.08);
@@ -30,7 +30,11 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
+      background:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
+        var(--bg);
+      background-size: 60px 60px;
       color: var(--text);
       font-family: var(--font-body);
       font-weight: 300;
@@ -68,7 +72,8 @@
     #hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      justify-items: center;
       align-items: center;
       padding: 8rem 3rem 4rem;
       position: relative;
@@ -80,14 +85,11 @@
         radial-gradient(ellipse 60% 60% at 80% 50%, rgba(232,197,71,0.07) 0%, transparent 70%),
         radial-gradient(ellipse 40% 40% at 20% 80%, rgba(92,184,224,0.06) 0%, transparent 70%);
     }
-    .hero-grid-overlay {
-      position: absolute; inset: 0; z-index: 0;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(700px, 100%);
     }
-    .hero-content { position: relative; z-index: 1; }
     .hero-tag {
       display: inline-block;
       font-family: var(--font-mono);
@@ -123,24 +125,37 @@
       max-width: 520px;
       font-size: 1rem;
       color: rgba(0,0,0,0.65);
-      margin-bottom: 2.5rem;
+      margin-bottom: 0;
       animation: fadeUp 0.8s 0.3s ease both;
     }
-    .hero-cv {
-      max-width: 520px;
-      height: 420px;
+    .hero-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 2rem;
+      align-items: start;
       margin-bottom: 2rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.06);
-      animation: fadeUp 0.8s 0.35s ease both;
     }
-    .hero-cv iframe {
+    .hero-photo img {
       width: 100%;
-      height: 100%;
-      border: 0;
+      height: auto;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    .hero-cv-link {
+      margin-top: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .hero-cv-link a {
+      color: var(--accent1);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(232,197,71,0.4);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-cv-link a:hover {
+      color: #c88f0b;
+      border-color: var(--accent1);
     }
     .hero-cta {
       display: flex; gap: 1rem; flex-wrap: wrap;
@@ -193,11 +208,11 @@
       line-height: 1.15;
     }
     .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0 3rem;
-      max-width: calc(1100px - 6rem);
+      width: min(1100px, calc(100% - 6rem));
+      height: 2px;
+      background: var(--accent1);
+      opacity: 0.25;
+      margin: 0 auto;
     }
 
     /* ── SKILLS ── */
@@ -289,7 +304,7 @@
     }
     .project-desc {
       font-size: 0.9rem;
-      color: rgba(240,236,228,0.65);
+      color: rgba(0,0,0,0.65);
       flex: 1;
     }
     .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -406,19 +421,25 @@
   <section id="about" style="max-width:100%; padding:0;">
     <div id="hero">
       <div class="hero-bg"></div>
-      <div class="hero-grid-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">Analytics Professional</div>
-        <h1 class="hero-name">Şebnem Sara<br/><span>Yayla</span></h1>
+        <h1 class="hero-name"><br/><span>Şebnem Sara Yayla</span></h1>
         <p class="hero-subtitle">Data Scientist · MSc University of Vienna</p>
-        <p class="hero-bio">
-          Combining strong expertise in machine learning, statistical modeling, and business intelligence. 
-          With experience across academia and industry, I build end-to-end data pipelines, develop predictive models, 
-          and transform complex datasets into actionable insights. 
-          A multidisciplinary perspective on solving data-driven problems.
-        </p>
-        <div class="hero-cv">
-          <iframe src="cv.pdf" title="Şebnem Sara Yayla CV"></iframe>
+        <div class="hero-intro">
+          <div>
+            <p class="hero-bio">
+              Combining strong expertise in machine learning, statistical modeling, and business intelligence. 
+              With experience across academia and industry, I build end-to-end data pipelines, develop predictive models, 
+              and transform complex datasets into actionable insights. 
+              A multidisciplinary perspective on solving data-driven problems.
+            </p>
+            <p class="hero-cv-link">
+              <a href="cv.pdf" target="_blank" rel="noopener">Download my CV</a>
+            </p>
+          </div>
+          <div class="hero-photo">
+            <img src="images/profile.jpeg" alt="Şebnem Sara Yayla" />
+          </div>
         </div>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -523,7 +544,7 @@
   <!-- PUBLICATIONS -->
   <section id="publications">
     <div class="section-label">Research</div>
-    <h2 class="section-title">Selected Publication</h2>
+    <h2 class="section-title">Publication</h2>
     <div class="exp-placeholder">
       <p>
         Lilek, D., Yayla, S. S., Stipanovic, H., Fink, T.-K., Egan, J., Herbinger, B., Tischberger-Aldrian, A., & Schimper, C. B. (2026). NIR Spectroscopy and Machine Learning for the Quantification of Blended Textiles: Towards Improved Understanding for Textile Recycling. Applied Sciences, 16(7), 3242. <a href="https://doi.org/10.3390/app16073242" target="_blank" style="color: var(--accent1); text-decoration: none;">https://doi.org/10.3390/app16073242</a>

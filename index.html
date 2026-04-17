@@ -9,7 +9,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
+      --bg: #f0e6ff;
       --surface: #f9fafb;
       --card: #ffffff;
       --border: rgba(0,0,0,0.08);
@@ -170,58 +170,6 @@
       border: 1px solid var(--border);
     }
     .btn-outline:hover { border-color: var(--accent1); color: var(--accent1); transform: translateY(-2px); }
-
-    /* hero right: decorative data viz */
-    .hero-visual {
-      position: relative; z-index: 1;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-orb {
-      width: 340px; height: 340px;
-      border-radius: 50%;
-      border: 1px solid rgba(232,197,71,0.15);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      animation: spin 30s linear infinite;
-    }
-    .hero-orb::before {
-      content: '';
-      position: absolute; inset: 20px;
-      border-radius: 50%;
-      border: 1px dashed rgba(92,184,224,0.2);
-      animation: spin 20s linear infinite reverse;
-    }
-    .hero-orb-inner {
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(232,197,71,0.15), rgba(13,13,13,0.6));
-      border: 1px solid rgba(232,197,71,0.3);
-      display: flex; align-items: center; justify-content: center;
-      animation: spin 30s linear infinite reverse;
-    }
-    .hero-orb-text {
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-style: italic;
-      color: var(--accent1);
-      text-align: center;
-      animation: spin 30s linear infinite;
-    }
-    .orb-dot {
-      position: absolute;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent1);
-    }
-    .orb-dot:nth-child(1) { top: -4px; left: 50%; }
-    .orb-dot:nth-child(2) { bottom: -4px; left: 50%; background: var(--accent3); }
-    .orb-dot:nth-child(3) { left: -4px; top: 50%; background: var(--accent2); }
-    .orb-dot:nth-child(4) { right: -4px; top: 50%; background: var(--accent4); }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
 
     /* ── SECTION BASE ── */
     section {
@@ -436,7 +384,6 @@
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.2rem; }
       #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; }
-      .hero-visual { display: none; }
       section { padding: 4rem 1.5rem; }
     }
   </style>
@@ -476,17 +423,6 @@
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-orb">
-          <div class="orb-dot"></div>
-          <div class="orb-dot"></div>
-          <div class="orb-dot"></div>
-          <div class="orb-dot"></div>
-          <div class="hero-orb-inner">
-            <div class="hero-orb-text">Data<br/>Science</div>
-          </div>
         </div>
       </div>
     </div>

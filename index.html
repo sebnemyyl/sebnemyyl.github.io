@@ -126,6 +126,22 @@
       margin-bottom: 2.5rem;
       animation: fadeUp 0.8s 0.3s ease both;
     }
+    .hero-cv {
+      max-width: 520px;
+      height: 420px;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.06);
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero-cv iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
     .hero-cta {
       display: flex; gap: 1rem; flex-wrap: wrap;
       animation: fadeUp 0.8s 0.4s ease both;
@@ -434,7 +450,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -454,6 +470,9 @@
           and transform complex datasets into actionable insights. 
           A multidisciplinary perspective on solving data-driven problems.
         </p>
+        <div class="hero-cv">
+          <iframe src="cv.pdf" title="Şebnem Sara Yayla CV"></iframe>
+        </div>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">View Projects</a>
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -544,7 +563,7 @@
         </a>
       </div>
       <!-- Placeholder cards for future projects -->
-      <div class="project-card" style="border-style: dashed; opacity: 0.45;">
+      <div class="project-card">
         <div class="project-number">02 / AI</div>
         <div class="project-title">Fashion Assistant</div>
           <p class="project-desc">
@@ -565,20 +584,13 @@
 
   <div class="section-divider"></div>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Work Experience</h2>
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Selected Publication</h2>
     <div class="exp-placeholder">
       <p>
-        Research Project Data Scientist
-        FH Wiener Neustadt - Josef Ressel Zentrum
-        Mar 2024 — Jun 2025
-        Tulln, Austria
-        • Collected, processed, and analyzed large datasets, applying preprocessing, outlier detection, and resampling techniques to ensure data quality.
-        • Developed end-to-end machine learning pipelines in Python (scikit-learn) and R to predict material composition with strong regression performance.
-        • Applied advanced ML methods (Random Forest, XGBoost, SVR, CNN) to high-dimensional datasets.
-        • Applied statistical methods and visualized results to support research and development decisions.
+        Lilek, D., Yayla, S. S., Stipanovic, H., Fink, T.-K., Egan, J., Herbinger, B., Tischberger-Aldrian, A., & Schimper, C. B. (2026). NIR Spectroscopy and Machine Learning for the Quantification of Blended Textiles: Towards Improved Understanding for Textile Recycling. Applied Sciences, 16(7), 3242. <a href="https://doi.org/10.3390/app16073242" target="_blank" style="color: var(--accent1); text-decoration: none;">https://doi.org/10.3390/app16073242</a>
       </p>
     </div>
   </section>
@@ -598,11 +610,11 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
           GitHub
         </a>
-        <a class="contact-link" href="https://linkedin.com" target="_blank">
+        <a class="contact-link" href="https://www.linkedin.com/in/sebnem-yayla" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
-        <a class="contact-link" href="mailto:your@email.com">
+        <a class="contact-link" href="mailto:sebnem.sara.yayla@gmail.com">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Email
         </a>
